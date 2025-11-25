@@ -19,7 +19,7 @@ First, ensure SSH access remains open.
 Then allow only your trusted IP or subnet to access port 2375.
 
 ```bash
-sudo ufw allow from < ip of your network > to any port 2375
+sudo ufw allow from < ip uptime kuma > to any port 2375
 sudo ufw enable
 sudo ufw reload
 ```
@@ -49,7 +49,7 @@ sudo nano /lib/systemd/system/docker.service
 Find the line starting with `ExecStart=` and replace it with:
 
 ```bash
-ExecStart=/usr/bin/dockerd -H unix:///var/run/docker.sock -H tcp://0.0.0.0:2375 --containerd=/run/containerd/containerd.sock
+ExecStart=/usr/bin/dockerd -H unix:///var/run/docker.sock -H tcp://<server machine where is docker, should be in same network>:2375 --containerd=/run/containerd/containerd.sock
 ```
 
 **What this does:**
